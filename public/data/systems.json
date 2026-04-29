@@ -1,0 +1,356 @@
+{
+  "categoryOrder": ["代码管理", "CI/CD", "容器编排", "配置中心", "任务调度", "日志平台", "监控告警", "链路追踪", "数据库管理", "缓存管理", "消息队列", "网关路由", "文档中心", "项目管理"],
+  "systems": [
+    {
+      "id": 1,
+      "name": "GitLab",
+      "icon": "Connection",
+      "url": "https://gitlab.com",
+      "category": "代码管理",
+      "description": "代码仓库与版本控制",
+      "color": "#E24329"
+    },
+    {
+      "id": 2,
+      "name": "GitHub",
+      "icon": "Connection",
+      "url": "https://github.com",
+      "category": "代码管理",
+      "description": "代码托管平台",
+      "color": "#181717"
+    },
+    {
+      "id": 3,
+      "name": "Jenkins",
+      "icon": "Tools",
+      "url": "https://www.jenkins.io",
+      "category": "CI/CD",
+      "description": "持续集成与持续部署",
+      "color": "#D33833"
+    },
+    {
+      "id": 4,
+      "name": "ArgoCD",
+      "icon": "Timer",
+      "url": "https://argoproj.github.io/cd/",
+      "category": "CI/CD",
+      "description": "GitOps持续交付",
+      "color": "#EF7B4D"
+    },
+    {
+      "id": 5,
+      "name": "Kubernetes",
+      "icon": "Box",
+      "url": "https://kubernetes.io",
+      "category": "容器编排",
+      "description": "容器编排平台",
+      "color": "#326CE5"
+    },
+    {
+      "id": 6,
+      "name": "K3s",
+      "icon": "Box",
+      "url": "https://k3s.io",
+      "category": "容器编排",
+      "description": "轻量级Kubernetes发行版",
+      "color": "#326CE5"
+    },
+    {
+      "id": 7,
+      "name": "Nacos",
+      "icon": "Setting",
+      "url": "https://nacos.io",
+      "category": "配置中心",
+      "description": "配置管理与服务发现",
+      "color": "#71C041"
+    },
+    {
+      "id": 8,
+      "name": "Apollo",
+      "icon": "Setting",
+      "url": "https://www.apolloconfig.com",
+      "category": "配置中心",
+      "description": "Apollo配置中心",
+      "color": "#EE4C4C"
+    },
+    {
+      "id": 9,
+      "name": "XXL-Job",
+      "icon": "Clock",
+      "url": "https://www.xuxueli.com/xxl-job/",
+      "category": "任务调度",
+      "description": "分布式任务调度平台",
+      "color": "#4CAF50"
+    },
+    {
+      "id": 10,
+      "name": "PowerJob",
+      "icon": "Clock",
+      "url": "https://www.yuque.com/powerjob/overview",
+      "category": "任务调度",
+      "description": "分布式任务调度框架",
+      "color": "#2196F3"
+    },
+    {
+      "id": 11,
+      "name": "Elasticsearch",
+      "icon": "Search",
+      "url": "https://www.elastic.co/cn/elasticsearch",
+      "category": "日志平台",
+      "description": "日志搜索与分析",
+      "color": "#005571"
+    },
+    {
+      "id": 12,
+      "name": "Kibana",
+      "icon": "DataLineChart",
+      "url": "https://www.elastic.co/cn/kibana",
+      "category": "日志平台",
+      "description": "日志可视化平台",
+      "color": "#F04E98"
+    },
+    {
+      "id": 13,
+      "name": "Loki",
+      "icon": "Search",
+      "url": "https://grafana.com/oss/loki/",
+      "category": "日志平台",
+      "description": "日志聚合系统",
+      "color": "#FCC622"
+    },
+    {
+      "id": 14,
+      "name": "Prometheus",
+      "icon": "DataAnalysis",
+      "url": "https://prometheus.io",
+      "category": "监控告警",
+      "description": "监控系统与告警",
+      "color": "#E6522C"
+    },
+    {
+      "id": 15,
+      "name": "Grafana",
+      "icon": "TrendCharts",
+      "url": "https://grafana.com",
+      "category": "监控告警",
+      "description": "可观测性平台",
+      "color": "#F46800"
+    },
+    {
+      "id": 16,
+      "name": "AlertManager",
+      "icon": "Bell",
+      "url": "https://prometheus.io/docs/alerting/latest/alertmanager/",
+      "category": "监控告警",
+      "description": "告警管理工具",
+      "color": "#E6522C"
+    },
+    {
+      "id": 17,
+      "name": "Jaeger",
+      "icon": "Connection",
+      "url": "https://www.jaegertracing.io",
+      "category": "链路追踪",
+      "description": "分布式链路追踪",
+      "color": "#59ADC4"
+    },
+    {
+      "id": 18,
+      "name": "SkyWalking",
+      "icon": "TrendCharts",
+      "url": "https://skywalking.apache.org",
+      "category": "链路追踪",
+      "description": "APM应用性能监控",
+      "color": "#6E57A5"
+    },
+    {
+      "id": 19,
+      "name": "Pinpoint",
+      "icon": "TrendCharts",
+      "url": "https://pinpoint-apm.github.io/pinpoint/",
+      "category": "链路追踪",
+      "description": "分布式链路追踪",
+      "color": "#1768AC"
+    },
+    {
+      "id": 20,
+      "name": "MySQL",
+      "icon": "Database",
+      "url": "https://www.mysql.com",
+      "category": "数据库管理",
+      "description": "关系型数据库",
+      "color": "#4479A1"
+    },
+    {
+      "id": 21,
+      "name": "PostgreSQL",
+      "icon": "Database",
+      "url": "https://www.postgresql.org",
+      "category": "数据库管理",
+      "description": "开源关系型数据库",
+      "color": "#336791"
+    },
+    {
+      "id": 22,
+      "name": "Redis",
+      "icon": "Bell",
+      "url": "https://redis.io",
+      "category": "缓存管理",
+      "description": "内存数据库与缓存",
+      "color": "#DC382D"
+    },
+    {
+      "id": 23,
+      "name": "Memcached",
+      "icon": "Bell",
+      "url": "https://memcached.org",
+      "category": "缓存管理",
+      "description": "分布式内存缓存",
+      "color": "#343434"
+    },
+    {
+      "id": 24,
+      "name": "Kafka",
+      "icon": "ChatDotRound",
+      "url": "https://kafka.apache.org",
+      "category": "消息队列",
+      "description": "分布式消息队列",
+      "color": "#231F20"
+    },
+    {
+      "id": 25,
+      "name": "RabbitMQ",
+      "icon": "ChatDotRound",
+      "url": "https://www.rabbitmq.com",
+      "category": "消息队列",
+      "description": "AMQP消息队列",
+      "color": "#FF6600"
+    },
+    {
+      "id": 26,
+      "name": "RocketMQ",
+      "icon": "ChatDotRound",
+      "url": "https://rocketmq.apache.org",
+      "category": "消息队列",
+      "description": "阿里巴巴消息队列",
+      "color": "#D7732D"
+    },
+    {
+      "id": 27,
+      "name": "Kong",
+      "icon": "Guide",
+      "url": "https://konghq.com",
+      "category": "网关路由",
+      "description": "API网关",
+      "color": "#003459"
+    },
+    {
+      "id": 28,
+      "name": "Nginx",
+      "icon": "Guide",
+      "url": "https://nginx.org",
+      "category": "网关路由",
+      "description": "高性能HTTP服务器",
+      "color": "#009639"
+    },
+    {
+      "id": 29,
+      "name": "Traefik",
+      "icon": "Guide",
+      "url": "https://traefik.io",
+      "category": "网关路由",
+      "description": "云原生边缘路由器",
+      "color": "#24A1C1"
+    },
+    {
+      "id": 30,
+      "name": "Swagger",
+      "icon": "Document",
+      "url": "https://swagger.io",
+      "category": "文档中心",
+      "description": "API文档工具",
+      "color": "#85EA2D"
+    },
+    {
+      "id": 31,
+      "name": "ShowDoc",
+      "icon": "Document",
+      "url": "https://www.showdoc.com.cn",
+      "category": "文档中心",
+      "description": "API文档与团队协作",
+      "color": "#4B83F9"
+    },
+    {
+      "id": 32,
+      "name": "Nexus",
+      "icon": "Box",
+      "url": "https://www.sonatype.com/nexus-repository-oss",
+      "category": "文档中心",
+      "description": "Maven私有仓库",
+      "color": "#F47A20"
+    },
+    {
+      "id": 33,
+      "name": "Harbor",
+      "icon": "Box",
+      "url": "https://goharbor.io",
+      "category": "文档中心",
+      "description": "容器镜像仓库",
+      "color": "#60B5E5"
+    },
+    {
+      "id": 34,
+      "name": "SonarQube",
+      "icon": "Monitor",
+      "url": "https://www.sonarsource.com/products/sonarqube/",
+      "category": "文档中心",
+      "description": "代码质量检测",
+      "color": "#4E9D68"
+    },
+    {
+      "id": 35,
+      "name": "NexusIQ",
+      "icon": "Shield",
+      "url": "https://www.sonatype.com/products/nexus-iq",
+      "category": "文档中心",
+      "description": "组件安全分析",
+      "color": "#F47A20"
+    },
+    {
+      "id": 36,
+      "name": "禅道",
+      "icon": "Tickets",
+      "url": "https://www.zentao.net",
+      "category": "项目管理",
+      "description": "项目管理软件",
+      "color": "#EC1943"
+    },
+    {
+      "id": 37,
+      "name": "Tapd",
+      "icon": "Tickets",
+      "url": "https://www.tapd.cn",
+      "category": "项目管理",
+      "description": "腾讯敏捷协作平台",
+      "color": "#2F7FEF"
+    },
+    {
+      "id": 38,
+      "name": "Worktile",
+      "icon": "Tickets",
+      "url": "https://worktile.com",
+      "category": "项目管理",
+      "description": "企业协作与项目管理",
+      "color": "#1890FF"
+    },
+    {
+      "id": 39,
+      "name": "Confluence",
+      "icon": "Document",
+      "url": "https://www.atlassian.com/software/confluence",
+      "category": "项目管理",
+      "description": "企业知识管理",
+      "color": "#0052CC"
+    }
+  ]
+}
