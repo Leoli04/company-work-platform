@@ -119,7 +119,9 @@ export const useSystemStore = defineStore('system', () => {
   function loadCustomSystems() {
     try {
       const stored = localStorage.getItem(STORAGE_KEY)
-      return stored ? JSON.parse(stored) : []
+      const systems = stored ? JSON.parse(stored) : []
+      // 确保所有自定义系统都有 isCustom: true 标记
+      return systems.map(s => ({ ...s, isCustom: true }))
     } catch {
       return []
     }
@@ -319,25 +321,29 @@ export const useSystemStore = defineStore('system', () => {
     return system ? system.isCustom : false
   }
 
-  // 导出为 JSON 格式
+  // 导出为 JSON 格式（只导出用户自定义的系统）
   function exportAsJson() {
-    const data = systems.value.map(s => ({
-      name: s.name,
-      url: s.url
-    }))
+    const data = systems.value
+      .filter(s => s.isCustom)
+      .map(s => ({
+        name: s.name,
+        url: s.url
+      }))
     return JSON.stringify(data, null, 2)
   }
 
-  // 导出为浏览器收藏夹格式（Chrome/Edge）
+  // 导出为浏览器收藏夹格式（Chrome/Edge）（只导出用户自定义的系统）
   function exportAsBrowserBookmarks(title = '工作平台') {
-    const children = systems.value.map(s => ({
-      date_added: Date.now() * 1000,
-      guid: generateGUID(),
-      id: generateID(),
-      name: s.name,
-      type: 'url',
-      url: s.url
-    }))
+    const children = systems.value
+      .filter(s => s.isCustom)
+      .map(s => ({
+        date_added: Date.now() * 1000,
+        guid: generateGUID(),
+        id: generateID(),
+        name: s.name,
+        type: 'url',
+        url: s.url
+      }))
 
     return JSON.stringify({
       version: 1,

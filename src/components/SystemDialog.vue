@@ -127,9 +127,9 @@ const iconOptions = [
   'Translate', 'DataBase', 'Key', 'Collection'
 ]
 
-// 分类选项从store获取（排除"全部"）
+// 分类选项：系统预定义分类 + 我的分类
 const categoryOptions = computed(() => {
-  return store.categories.filter(c => c !== '全部')
+  return [...store.defaultCategoryTabs, ...store.customCategoryTabs]
 })
 
 const visible = computed({

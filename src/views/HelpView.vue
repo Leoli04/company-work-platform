@@ -3,7 +3,7 @@
     <div class="help-content">
       <div class="help-header">
         <h1><el-icon><QuestionFilled /></el-icon> 使用说明</h1>
-        <p class="subtitle">孚盟工作平台系统操作指南</p>
+        <p class="subtitle">工作平台操作指南</p>
       </div>
 
       <!-- 支持的功能 -->
@@ -33,13 +33,16 @@
         </div>
 
         <div class="feature-group">
-          <h3><el-icon><Download /></el-icon> 导入导出</h3>
+          <h3><el-icon><Download /></el-icon> 导出功能</h3>
           <ul>
-            <li><strong>导出为JSON</strong> - 导出所有系统为简单JSON格式</li>
+            <li><strong>导出为JSON</strong> - 导出您添加的系统为简单JSON格式</li>
             <li><strong>导出为浏览器收藏夹</strong> - 导出为Chrome/Edge兼容的收藏夹格式</li>
-            <li><strong>导入JSON</strong> - 支持导入简单JSON格式的系统列表</li>
-            <li><strong>导入浏览器收藏夹</strong> - 支持导入Chrome/Edge导出的书签JSON文件</li>
           </ul>
+          <el-alert type="info" :closable="false" style="margin-top: 10px">
+            <template #title>
+              <strong>导出说明：</strong>仅导出您自己添加的系统数据，系统预定义的数据不会导出
+            </template>
+          </el-alert>
         </div>
 
         <div class="feature-group">
@@ -96,36 +99,6 @@
         </div>
       </section>
 
-      <!-- 导入格式示例 -->
-      <section class="section format-example">
-        <h2><el-icon><Document /></el-icon> 导入格式示例</h2>
-        
-        <div class="format-tabs">
-          <el-tabs v-model="activeFormat">
-            <el-tab-pane label="简单JSON格式" name="simple">
-              <pre class="code-block">{{ simpleJsonExample }}</pre>
-            </el-tab-pane>
-            <el-tab-pane label="Chrome收藏夹格式" name="chrome">
-              <pre class="code-block">{{ chromeJsonExample }}</pre>
-            </el-tab-pane>
-          </el-tabs>
-        </div>
-
-        <div class="tips">
-          <el-alert type="info" :closable="false">
-            <template #title>
-              <strong>导入提示：</strong>
-              <ul class="tips-list">
-                <li>支持的文件格式：<code>.json</code></li>
-                <li>导入后系统默认添加到"导入"分类</li>
-                <li>导入的系统不会自动加入常用系统</li>
-                <li>如导入失败，请检查JSON格式是否正确</li>
-              </ul>
-            </template>
-          </el-alert>
-        </div>
-      </section>
-
       <!-- 快捷操作 -->
       <section class="section shortcuts">
         <h2><el-icon><Pointer /></el-icon> 常用操作</h2>
@@ -161,16 +134,7 @@
               <p>点击"导出"按钮，可以选择JSON格式或浏览器收藏夹格式进行数据备份。</p>
             </el-card>
           </el-col>
-          <el-col :span="12">
-            <el-card shadow="hover">
-              <template #header>
-                <div class="card-header">
-                  <span><el-icon><Upload /></el-icon> 导入数据</span>
-                </div>
-              </template>
-              <p>点击"导入"按钮，选择符合格式的JSON文件，即可批量导入系统数据。</p>
-            </el-card>
-          </el-col>
+
         </el-row>
       </section>
 
@@ -189,46 +153,17 @@
 import { ref, computed } from 'vue'
 import {
   QuestionFilled, CircleCheckFilled, CircleCloseFilled, Warning, Lock,
-  FolderOpened, Star, Connection, Document, Pointer, Plus,
-  Download, Upload, ArrowLeft, MagicStick
+  FolderOpened, Star, Connection, Pointer, Plus,
+  Download, ArrowLeft, MagicStick
 } from '@element-plus/icons-vue'
 import { useSystemStore } from '@/stores/system'
 
 const store = useSystemStore()
-const activeFormat = ref('simple')
 
 // 动态获取分类列表（排除"全部"）
 const categoryList = computed(() => {
   return store.categories.filter(c => c !== '全部')
 })
-
-const simpleJsonExample = `[
-  {
-    "name": "系统名称",
-    "url": "https://example.com"
-  },
-  {
-    "name": "另一个系统",
-    "url": "https://another.com"
-  }
-]`
-
-const chromeJsonExample = `{
-  "version": 1,
-  "children": [
-    {
-      "name": "文件夹名称",
-      "type": "folder",
-      "children": [
-        {
-          "name": "链接名称",
-          "url": "https://example.com",
-          "type": "url"
-        }
-      ]
-    }
-  ]
-}`
 </script>
 
 <style scoped>

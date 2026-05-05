@@ -20,37 +20,7 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <el-popover
-            placement="bottom"
-            :width="400"
-            trigger="click"
-          >
-            <template #reference>
-              <el-button type="warning" plain>
-                <el-icon><Upload /></el-icon>
-                导入
-              </el-button>
-            </template>
-            <div class="import-hint">
-              <h4><el-icon><InfoFilled /></el-icon> 支持的导入格式</h4>
-              <el-divider />
-              <div class="format-item">
-                <strong>简单JSON格式：</strong>
-                <pre class="format-code">[
-  {"name": "系统名称", "url": "https://..."}
-]</pre>
-              </div>
-              <div class="format-item">
-                <strong>Chrome/Edge收藏夹格式：</strong>
-                <pre class="format-code">{"version": 1, "children": [...]}</pre>
-              </div>
-              <el-divider />
-              <el-button type="primary" style="width: 100%" @click="triggerImport">
-                选择文件导入
-              </el-button>
-            </div>
-          </el-popover>
-          <input ref="importInput" type="file" accept=".json" style="display:none" @change="onImportFile" />
+
           <el-dropdown @command="handleThemeChange" trigger="click">
             <el-button type="info" plain>
               <el-icon><MagicStick /></el-icon>
@@ -351,7 +321,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { Plus, Search, Platform, StarFilled, Grid, MagicStick, Check, ArrowUp, ArrowDown, Download, Upload, QuestionFilled, InfoFilled } from '@element-plus/icons-vue'
+import { Plus, Search, Platform, StarFilled, Grid, MagicStick, Check, ArrowUp, ArrowDown, Download, QuestionFilled } from '@element-plus/icons-vue'
 import SystemCard from '@/components/SystemCard.vue'
 import SystemDialog from '@/components/SystemDialog.vue'
 import { useSystemStore } from '@/stores/system'
@@ -359,7 +329,6 @@ import { useThemeStore } from '@/stores/theme'
 
 const store = useSystemStore()
 const themeStore = useThemeStore()
-const importInput = ref(null)
 const hoveredUrl = ref('')
 const dragOverCategory = ref('')
 const draggedSystem = ref(null)
@@ -411,27 +380,6 @@ function handleExport(type) {
     store.downloadFile(content, '工作平台_收藏夹.json')
     ElMessage.success('Chrome/Edge 收藏夹导出成功')
   }
-}
-
-function triggerImport() {
-  importInput.value.click()
-}
-
-function onImportFile(event) {
-  const file = event.target.files[0]
-  if (!file) return
-
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    const result = store.importFromJson(e.target.result)
-    if (result.success) {
-      ElMessage.success(`成功导入 ${result.count} 个系统（已排除常用）`)
-    } else {
-      ElMessage.error(result.error)
-    }
-  }
-  reader.readAsText(file)
-  event.target.value = ''
 }
 
 const searchQuery = ref('')
@@ -670,7 +618,12 @@ const filteredSystems = computed(() => {
 })
 
 function openSystem(system) {
-  window.open(system.url, '_blank')
+  let url = system.url
+  // 如果 URL 没有协议前缀，添加 https://
+  if (url && !url.match(/^https?:\/\//i)) {
+    url = 'https://' + url
+  }
+  window.open(url, '_blank')
 }
 
 function toggleFavorite(id) {
@@ -821,23 +774,6 @@ function handleDrop(event, targetCategory) {
 
 .format-item {
   margin-bottom: 16px;
-}
-
-.format-item strong {
-  color: #606266;
-  font-size: 13px;
-}
-
-.format-code {
-  background: #f5f7fa;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  margin-top: 6px;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-break: break-all;
-  border: 1px solid #e4e7ed;
 }
 
 .search-bar {
