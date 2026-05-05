@@ -102,35 +102,37 @@
           :key="cat"
           class="category-tag-wrapper"
         >
-          <el-dropdown trigger="click" @command="(cmd) => handleCategoryCommand(cmd, cat)">
-            <el-tag
-              :type="selectedSubCategory === cat ? 'primary' : 'info'"
-              effect="dark"
-              class="category-tag"
-              :class="{ 'is-drag-over': dragOverTab === cat, 'is-selected': selectedSubCategory === cat }"
-              @click.stop="handleSelectMyCategory(cat)"
-              @dragstart="handleTabDragStart($event, cat, index, true)"
-              @dragover.prevent="handleTabDragOver($event, cat)"
-              @dragleave="handleTabDragLeave"
-              @drop="handleTabDrop($event, cat)"
-              @dragend="handleTabDragEnd"
-            >
-              {{ cat }}
-              <el-icon class="el-icon--right"><ArrowDown /></el-icon>
-            </el-tag>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item command="edit">
-                  <el-icon><Edit /></el-icon>
-                  编辑分类
-                </el-dropdown-item>
-                <el-dropdown-item command="delete" divided>
-                  <el-icon><Delete /></el-icon>
-                  删除分类
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+          <el-tag
+            :type="selectedSubCategory === cat ? 'primary' : 'info'"
+            effect="dark"
+            class="category-tag"
+            :class="{ 'is-drag-over': dragOverTab === cat, 'is-selected': selectedSubCategory === cat }"
+            @click="handleSelectMyCategory(cat)"
+            @dragstart="handleTabDragStart($event, cat, index, true)"
+            @dragover.prevent="handleTabDragOver($event, cat)"
+            @dragleave="handleTabDragLeave"
+            @drop="handleTabDrop($event, cat)"
+            @dragend="handleTabDragEnd"
+          >
+            {{ cat }}
+            <el-dropdown trigger="click" @command="(cmd) => handleCategoryCommand(cmd, cat)" @click.stop>
+              <span class="category-arrow-wrapper" @click.stop>
+                <el-icon class="category-arrow"><ArrowDown /></el-icon>
+              </span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="edit">
+                    <el-icon><Edit /></el-icon>
+                    编辑分类
+                  </el-dropdown-item>
+                  <el-dropdown-item command="delete" divided>
+                    <el-icon><Delete /></el-icon>
+                    删除分类
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </el-tag>
         </div>
         <el-tag
           type="success"
@@ -143,7 +145,7 @@
         </el-tag>
       </div>
       <!-- 系统分类Tab行（仅"我添加"时显示，用于归类自定义系统） -->
-      <div v-if="selectedCategory === '我添加'" class="category-tabs custom-systems-categories">
+      <div v-if="selectedCategory === '我添加' && store.customSystemsCategoryTabs.length > 0" class="category-tabs custom-systems-categories">
         <span class="category-label">系统分类：</span>
         <el-tag
           v-for="cat in store.customSystemsCategoryTabs"
@@ -827,6 +829,36 @@ function handleDrop(event, targetCategory) {
 
 .category-tag-wrapper {
   display: inline-flex;
+}
+
+.category-tag :deep(.el-tag__content) {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.category-arrow-wrapper {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 4px;
+  margin-right: -4px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.category-arrow-wrapper:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.category-arrow {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  transition: color 0.3s;
+}
+
+.category-arrow-wrapper:hover .category-arrow {
+  color: #fff;
 }
 
 .category-tag.is-selected {

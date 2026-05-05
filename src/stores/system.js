@@ -160,8 +160,14 @@ export const useSystemStore = defineStore('system', () => {
   })
 
   // 自定义系统使用的分类（用于"我添加"时按系统分类筛选）
+  // 只返回预定义分类中，自定义系统正在使用的分类
   const customSystemsCategoryTabs = computed(() => {
-    const cats = new Set(systems.value.filter(s => s.isCustom).map(s => s.category))
+    // 获取预定义分类列表
+    const defaultCats = new Set(defaultSystems.value.map(s => s.category))
+    // 获取自定义系统实际使用的分类
+    const customSystemCats = new Set(systems.value.filter(s => s.isCustom).map(s => s.category))
+    // 只保留预定义分类中，自定义系统正在使用的分类
+    const cats = new Set([...customSystemCats].filter(c => defaultCats.has(c)))
     const order = categoryOrder.value || FALLBACK_CATEGORY_ORDER
     const ordered = order.filter(c => cats.has(c))
     const newCats = [...cats].filter(c => !order.includes(c))
