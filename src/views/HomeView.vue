@@ -780,8 +780,13 @@ function handleDrop(event, targetCategory) {
 
 .search-bar {
   max-width: 1400px;
-  margin: 30px auto;
-  padding: 0 40px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  position: sticky;
+  top: 72px;
+  z-index: 90;
+  background: var(--background);
+  backdrop-filter: blur(10px);
 }
 
 .search-input {
